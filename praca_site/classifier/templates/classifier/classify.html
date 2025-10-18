@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Klasyfikacja zdjęcia</title>
+</head>
+<body>
+    <h1>Wstaw zdjęcie do klasyfikacji</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">Rozpoznaj</button>
+    </form>
+
+    {% if result %}
+        <h2>Wynik: {{ result }}</h2>
+        <p>Pewność: {{ confidence }}</p>
+    {% endif %}
+</body>
+</html>
