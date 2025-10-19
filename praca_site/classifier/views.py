@@ -6,6 +6,7 @@ import os
 
 def classify_image(request):
     result = None
+    confidence = None
     # sprawdzenie czy metoda to POST i czy plik został przesłany
     if request.method == 'POST' and request.FILES.get('image'):
         image_file = request.FILES['image']

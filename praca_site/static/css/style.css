@@ -1,0 +1,124 @@
+/* Reset podstawowy */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    background-color: #f5f5f5;
+    color: black;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #4CAF50;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px 20px;
+    position: fixed;   /* navbar przyklejony do góry */
+    top: 0;            /* od góry ekranu */
+    left: 0;           /* od lewej krawędzi */
+    width: 100%;       /* pełna szerokość */
+    z-index: 1000;     /* aby był nad innymi elementami */
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #45a049;
+}
+
+/* Główna treść */
+main {
+    margin-top: 80px;
+    margin-left: clamp(15px, 15%, 550px);
+    margin-right: clamp(15px, 15%, 550px);
+}
+
+.classify-container {
+    max-width: 1000px;
+    margin: 100px auto;
+    padding: 30px;
+    background-color: darkgray;
+    border-radius: 15px;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.classify-container h1 {
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: black;
+}
+
+.classify-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.classify-container input {
+    font-size: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+    cursor: pointer;
+    width: 100%;
+    transition: transform 0.2s ease;
+}
+.classify-container input:hover {
+    transform: scale(1.02);
+}
+
+.classify-container button {
+    padding: 10px 15px;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s, transform 0.2s ease;
+}
+.classify-container button:hover {
+    background: lightgrey;
+}
+
+.classify-container .result {
+    margin-top: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.classify-container .result h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.classify-container .result p {
+  color: grey;
+  font-size: 17px;
+}
+
+#show {
+    display: none;
+    max-width: 300px;
+    margin-top: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+#show:hover {
+  transform: scale(1.03);
+}

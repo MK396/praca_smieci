@@ -1,21 +1,35 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Klasyfikacja zdjęcia</title>
-</head>
-<body>
-    <h1>Wstaw zdjęcie do klasyfikacji</h1>
+{% extends 'layout.html' %}
+{% block title %}Rozpoznaj obraz{% endblock %}
 
+{% block content %}
+<div class="classify-container">
+    <h1>Wstaw zdjęcie do klasyfikacji</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="file" name="image" accept="image/*" required>
+        <input type="file" name="image" accept="image/*" onchange="showImage(event)">
+        <img id="show" src="#" alt="Podgląd obrazu">
         <button type="submit">Rozpoznaj</button>
     </form>
-
     {% if result %}
-        <h2>Wynik: {{ result }}</h2>
-        <p>Pewność: {{ confidence }}</p>
+    <div class="result">
+        <h2>{{ result }}</h2>
+        <p>{{ confidence }}% pewności</p>
+    </div>
     {% endif %}
-</body>
-</html>
+</div>
+
+<script>
+    function showImage(event) {
+        const show = document.getElementById('show');
+        const file = event.target.files[0];
+
+        if (file) {
+            show.src = URL.createObjectURL(file);
+            show.style.display = 'block';}
+        else {
+            show.src = '#';
+            show.style.display = 'none';}
+    }
+</script>
+
+{% endblock %}

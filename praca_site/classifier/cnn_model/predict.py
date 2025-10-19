@@ -8,7 +8,7 @@ model_path = os.path.join(os.path.dirname(__file__), "my_model_mobilenetv3.keras
 
 model = load_model(model_path)
 
-class_labels = ['bio', 'electro', 'glass', 'mixed', 'paper', 'plastic_metal', 'textile']
+class_labels = ['Bio', 'Elektrośmieci', 'Szkło', 'Zmieszane', 'Papier', 'Metal i tworzywa sztuczne', 'Ubrania']
 
 # Funkcja przyjmująca ścieżkę do obrazu i zwracająca przewidywaną klasę
 def predict_image(img_path):
