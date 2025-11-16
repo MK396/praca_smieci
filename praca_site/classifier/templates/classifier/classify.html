@@ -3,9 +3,16 @@
 
 {% block content %}
 <div class="classify-container">
-    <h1>Wstaw zdjęcie do klasyfikacji</h1>
+    <h1>Wybierz model i wstaw zdjęcia do klasyfikacji</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
+
+        <select name="model_choice" id="model_choice" required>
+            <option value="" selected disabled>Wybierz model</option>
+            <option value="resnet">ResNet50V2</option>
+            <option value="custom">Model autorski</option>
+        </select>
+
         <input type="file" name="images" accept="image/*" multiple>
         <button type="submit">Rozpoznaj</button>
     </form>

@@ -5,7 +5,64 @@
 {% endblock %}
 
 {% block content %}
-<h1>
-    Strona główna
-</h1>
+<main>
+    <div class="home-container">
+        <h1>Witaj w systemie do wspomagania segregacji odpadów i edukacji ekologicznej</h1>
+        <p>
+            Korzystając z aplikacji masz możliwość przetestowania autorskiego modelu sieci neuronowej
+            oraz modelu ResNet50V2 do rozpoznawania odpadów na podstawie zdjęć. Wystarczy przejść do
+            zakładki "Rozpoznaj obraz", wybrać model sieci neuronowej i przesłać wybrane przez siebie zdjęcia.
+            Ponad to w zakładce "jak segregować" znajdziesz kluczowe informacje na temat prawidłowej segregacji odpadów.
+        </p>
+    </div>
+
+    <section class="features">
+        <h2>Sekcja rozpoznawania obrazu</h2>
+        <div class="feature-list">
+            <div class="feature">
+                <h3>Analiza obrazu</h3>
+                <p>Sieć neurnonowa rozpoznaje co znajduje się na obrazie dzięki wytrenowanemu modelowi.
+                    Dokładność modelu ResNetV2 wynosi 96%, a modelu autorskiego 90%</p>
+            </div>
+            <div class="feature">
+                <h3>Obsługa wielu plików</h3>
+                <p>Przesłać możesz jeden lub więcej obrazów które chcesz sklasyfikować. Wyniki otrzymasz dla każdego z nich.</p>
+            </div>
+            <div class="feature">
+                <h3>Wynik</h3>
+                <p>Wynik jednego obrazu dostaniesz w ułamku sekundy wraz z procentową pewnością modelu.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>Sekcja segregacji</h2>
+        <div class="feature-list">
+            <div class="feature">
+                <h3>Rodzaje pojemników</h3>
+                <p>Pojemniki zostały podpisane i oznaczone odpowiednimi kolorami.</p>
+            </div>
+            <div class="feature">
+                <h3>Interaktywne pojemniki</h3>
+                <p>Po naciśnięciu na wybrany pojemnik wyświetlana jest ramka z odpadami,
+                które można wyrzucić do danego pojemnika oraz z tymi których nie powinniśmy tam wyrzucać.</p>
+            </div>
+        </div>
+    </section>
+<!--
+    <section class="features">
+        <h2>Sekcja gier edukacyjnych</h2>
+        <div class="feature-list">
+            <div class="feature">
+                <h3>Cecha</h3>
+                <p>Opis</p>
+            </div>
+            <div class="feature">
+                <h3>Cecha</h3>
+                <p>Opis</p>
+            </div>
+        </div>
+    </section>
+-->
+</main>
 {% endblock %}

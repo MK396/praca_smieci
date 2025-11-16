@@ -1,0 +1,193 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+    Segregacja
+{% endblock %}
+
+{% block content %}
+<div class="bins-wrapper">
+    <div class="bin-card">
+        <img class="bin-image" src="{% static 'images/bins/kosz_zolty.png' %}" alt="Metale pojemnik">
+        <h2>Metale i tworzywa sztuczne</h2>
+    </div>
+
+    <div class="bin-card">
+        <img class="bin-image" src="{% static 'images/bins/kosz_niebieski.png' %}" alt="Papier pojemnik">
+        <h2>Papier</h2>
+    </div>
+
+    <div class="bin-card">
+        <img class="bin-image" src="{% static 'images/bins/kosz_zielony.png' %}" alt="Szkło pojemnik">
+        <h2>Szkło</h2>
+    </div>
+
+    <div class="bin-card">
+        <img class="bin-image" src="{% static 'images/bins/kosz_brazowy.png' %}" alt="Bio pojemnik">
+        <h2>Biodegradowalne</h2>
+    </div>
+
+    <div class="bin-card">
+        <img class="bin-image" src="{% static 'images/bins/kosz_czarny.png' %}" alt="Zmieszane pojemnik">
+        <h2>Zmieszane</h2>
+    </div>
+
+    <div class="bin-card">
+        <img class="bin-image" src="{% static 'images/bins/kosz_zolty.png' %}" alt="Electro pojemnik">
+        <h2>Elektroodpady</h2>
+    </div>
+
+    <div class="bin-card">
+        <img class="bin-image" src="{% static 'images/bins/kosz_zolty.png' %}" alt="Ubrania pojemnik">
+        <h2>Tekstylia</h2>
+    </div>
+</div>
+
+
+<div id="bin-info-box" class="bin-info-box">
+    <div class="bin-info-content">
+        <h2 id="bin-title"></h2>
+        <div id="bin-lists"></div>
+    </div>
+    <button id="close-info" class="close-info">Zamknij</button>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const cards = document.querySelectorAll(".bin-card");
+    const infoBox = document.getElementById("bin-info-box");
+    const closeBtn = document.getElementById("close-info");
+    const binTitle = document.getElementById("bin-title");
+    const binLists = document.getElementById("bin-lists");
+
+    const binsInfo = {
+        "Metale i tworzywa sztuczne": {
+            can: [
+                "Plastikowe butelki po napojach", "Nakrętki", "Plastikowe opakowania po produktach spożywczych", "Kartony po mleku i sokach",
+                "Opakowania po środkach czystości (np. płyny do mycia)", "Opakowania po kosmetykach (np. szampony, pasty do zębów)", "Styropian",
+                "Plastikowe torby, worki, reklamówki i inne folie", "Puszki", "Folia aluminiowa", "Metale kolorowe", "Kapsle i zakrętki od słoików"
+            ],
+            cannot: [
+                "Butelki i pojemniki z zawartością", "Plastikowe zabawki", "Opakowania po lekach i zużyte artykuły medyczne", "Opakowania po olejach silnikowych",
+                "Części samochodowe", "Zużyte beterie i akumulatory", "Puszki i pojemniki po farbach i lakierach", "Zużyty sprzęt AGD i RTV"
+            ]
+        },
+        "Papier": {
+            can: [
+                "Opakowania z papieru, kartony, tektura", "Katalogi, ulotki", "Gazety i czasopisma", "Papier szkolny i biurowy",
+                "Zeszyty i książki", "Papier pakowy", "Torby i worki papierowe"
+                ],
+            cannot: [
+                "Reczniki papierowe i chusteczki", "Papier powleczony folią", "Papier zatłuszczony lub mocno zabrudzony", "Papierowe worki po nawozach, cementach itp.",
+                "Tapety", "Pieluchy i inne materiały higieniczne", "Zatłuszczone jednorazowe opakowania po jedzeniu", "Ubrania"
+            ]
+        },
+        "Szkło": {
+            can: [
+                "Butelki po napojach", "Słoiki po żywności", "Szklane opakowania po kosmetykach"
+            ],
+            cannot: [
+                "Ceramika, doniczki, porcelana", "Szkło od okularów", "Szkło żaroodporne", "Znicze z woskiem", "Żarówki", "Reflektory", "Lustra",
+                "Szyby okienne i zbrojeniowe", "Monitory i ekrany telewizyjne", "Termometry i strzykawki"
+            ]
+        },
+        "Biodegradowalne": {
+            can: [
+                "Odpadki warzywna i owocowe", "Gałęzie", "Skoszona trawa, liście, kwiaty", "Trociny i kora", "Niezaimpregnowane drewno", "Resztki jedzenia (kości)"
+            ],
+            cannot: [
+                "Kości zwierzęce", "Olej jadalny", "Odchody zwierzęce", "Popiół", "Leki", "Drewno impregnowane", "Płyty wiórowe", "Ziemia i kamienie", "Inne odpady komunalne"
+            ]
+        },
+        "Zmieszane": {
+            can: [
+                "Pieluchy jednorazowe i art. higieniczne", "Zużyte chusteczki i ręczniki papierowe", "Ceramikę", "Lustra", "Zatłuszczony i brudny papier", "Zimny popiół",
+                "Worki z odkurzacza z zawartością", "Zużyte zabawki", "Niedopałki papierosów", "Maszynki do golenia", "Puste zapalniczki", "Odpadki z ryb, mięsa i kości", "Odchody zwierzęce"
+            ],
+            cannot: [
+                "Odpady nadające się do recyklingu", "Tekstylia", "Elektroodpady", "Baterie i akumulatory", "Żarówki", "Leki", "Odpady niebezpieczne", "Odpady budowalne, gruz"
+            ]
+        },
+        "Elektroodpady": {
+            can: [
+                "Sprzęt działający na zasadzie wymiany temperatury (lodówki, sprzęt klimatyzacyjny)", "Ekrany i moniotry", "Lampy", "Sprzęt wielkogabarytowy (pralki, zmywarki)",
+                "Sprzęt małogabarytowy (odkurzacze, żelazka)", "Małogabarytowy sprzęt informatyczny i telekomunikacyjny (telefony, komputery osobiste)"
+            ],
+            cannot: []
+        },
+        "Tekstylia": {
+            can: [
+                "Ubrania i bielizna", "Obuwie", "Firany i zasłony", "Pościel", "Obrusy", "Koce i narzuty", "Ręczniki i ścierki"
+            ],
+            cannot: []
+        }
+    };
+
+    // kliknięcie w pojemnik
+    cards.forEach(card => {
+        card.addEventListener("click", () => {
+            const title = card.querySelector("h2").textContent;
+            const info = binsInfo[title];
+
+            if (info) {
+                binTitle.textContent = title;
+                let htmlContent = "";
+                if (title === "Zmieszane") {
+                    htmlContent += `
+                        <div>
+                            <strong class="center-text">Wrzucamy to, czego nie można umieścic w pozostałych pojemnikach i co nie nadaje się do recyklingu</strong>
+                            <strong>Należy wrzucać:</strong>
+                            <ul>${info.can.map(item => `<li>✅${item}</li>`).join("")}</ul>
+                            <strong>Nie należy wrzucać:</strong>
+                            <ul>${info.cannot.map(item => `<li>❌${item}</li>`).join("")}</ul>
+
+                        </div>
+                    `;
+                }
+                else if (title === "Tekstylia") {
+                    htmlContent += `
+                        <div>
+                            <strong class="center-text">
+                            Od 1 stycznia 2025 roku nie wolno wyrzucać tekstyliów do pojemnika na odpady zmieszane.
+                            Odpady te muszą trafić do Punktów Selektywnej Zbiórki Odpadów Komunalnych lub do specjalnych pojemników które znaleźć można w sklepach z odzieżą.
+                            </strong>
+                            <strong>Należy wrzucać:</strong>
+                            <ul>${info.can.map(item => `<li>✅${item}</li>`).join("")}</u
+                        </div>
+                    `;
+                }
+                else if (title === "Elektroodpady") {
+                    htmlContent += `
+                        <div>
+                            <strong class="center-text">
+                            Elektroodpadów nie wolno wyrzucać do zwykłych śmietników, powinny być one oddane do
+                            Puntów Selektywnej Zbiórki Odpadów Komunalnych. Zużyty sprzęt można oddać również w niektórych sklepach z elektroniką.
+                            </strong>
+                            <strong>Należy wrzucać:</strong>
+                            <ul>${info.can.map(item => `<li>✅${item}</li>`).join("")}</u
+                        </div>
+                    `;
+                }
+                else {
+                    htmlContent += `
+                        <strong>Należy wrzucać:</strong>
+                        <ul>${info.can.map(item => `<li>✅${item}</li>`).join("")}</ul>
+                        <strong>Nie należy wrzucać:</strong>
+                        <ul>${info.cannot.map(item => `<li>❌${item}</li>`).join("")}</ul>
+                    `;
+                }
+                binLists.innerHTML = htmlContent;
+                infoBox.style.display = "block";
+                infoBox.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    });
+
+    // zamykanie ramki
+    closeBtn.addEventListener("click", () => {
+        infoBox.style.display = "none";
+    });
+});
+</script>
+
+
+{% endblock %}

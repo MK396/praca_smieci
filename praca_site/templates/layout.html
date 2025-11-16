@@ -15,10 +15,28 @@
     <div class="navbar">
         <a href="/">Strona główna</a>
         <a href="/klasyfikacja">Rozpoznaj obraz</a>
+        <a href ="/segregacja">Jak segregować</a>
+        <!--    <a href="/gra">Gra edukacyjna</a>   -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
     <main>
         {% block content %}
         {% endblock %}
     </main>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const hamburger = document.getElementById("hamburger");
+        const navbar = document.querySelector(".navbar");
+
+        hamburger.addEventListener("click", () => {
+            navbar.classList.toggle("open");
+        });
+    });
+</script>
+
 </body>
 </html>
