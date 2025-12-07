@@ -1,16 +1,15 @@
 # ♻️ Aplikacja webowa do segregacji odpadów i edukacji ekologicznej
 
-Aplikacja webowa oparta na frameworku **Django**, wykorzystująca głębokie sieci neuronowe (**TensorFlow/Keras**)  
-do automatycznej klasyfikacji odpadów i wskazywania odpowiedniego pojemnika do ich utylizacji.
+Aplikacja webowa oparta na frameworku **Django**, wykorzystująca głębokie sieci neuronowe (**TensorFlow/Keras**) do automatycznej klasyfikacji odpadów i wskazywania odpowiedniego pojemnika do ich utylizacji.
 
-Projekt został stworzony w ramach pracy dyplomowej/inżynierskiej.
+Projekt został stworzony w ramach pracy inżynierskiej.
 
 ---
 
 ## 🚀 Funkcjonalności
 
 - **Klasyfikacja obrazów:** użytkownik przesyła zdjęcie odpadu, a system rozpoznaje jego kategorię.
-- **Sekcja edukacyjna:** aplikacja wyświetla odpowiedni kolor kosza (niebieski, żółty, zielony, brązowy, czarny) wraz z instrukcją dotyczącą poprawnej segregacji.
+- **Sekcja edukacyjna:** użytkownik ma możliwość sprawdzenia co można wyrzucać do danych pojemników, klikając na ikonkę podpisanego i oznaczonego kolorem kosza.
 - **Modele AI:** możliwość wyboru między modelem autorskim a modelem ResNet50V2 (oba znajdują się w katalogu `classifier/cnn_model`).
 
 ---
