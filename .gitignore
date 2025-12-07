@@ -1,4 +1,7 @@
-.env
-.venv
-praca_site/classifier/cnn_model/resnet50_best_3.keras
-praca_site/classifier/templates/classifier/classify_z_podgladem.html
+*.env
+*.sqlite3
+__pycache__/
+*.pyc
+venv/
+.venv/
+
