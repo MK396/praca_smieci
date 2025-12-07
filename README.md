@@ -48,6 +48,7 @@ source .venv/bin/activate
 
 ### 3. Instalacja zależności
 ```bash
+cd praca_site
 pip install -r requirements.txt
 ```
 
